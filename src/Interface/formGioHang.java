@@ -101,10 +101,10 @@ public class formGioHang extends javax.swing.JFrame {
         jLabel55.setText("1.210.000");
 
         btnLogin1.setText("Tính tiền máy 15");
-        btnLogin1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLogin1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLogin1.setkBackGroundColor(new java.awt.Color(0, 204, 0));
         btnLogin1.setkEndColor(new java.awt.Color(0, 204, 0));
-        btnLogin1.setkHoverEndColor(new java.awt.Color(255, 0, 51));
+        btnLogin1.setkHoverEndColor(new java.awt.Color(0, 204, 0));
         btnLogin1.setkHoverForeGround(new java.awt.Color(255, 0, 51));
         btnLogin1.setkHoverStartColor(new java.awt.Color(51, 204, 0));
         btnLogin1.setkPressedColor(new java.awt.Color(255, 255, 255));
@@ -173,9 +173,9 @@ public class formGioHang extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel54)
                     .addComponent(jLabel55))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(14, 14, 14))
         );
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -211,11 +211,11 @@ public class formGioHang extends javax.swing.JFrame {
         jButton9.setText("Xoá sản phẩm");
 
         btnLogin.setText("Xoá đơn hàng");
-        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLogin.setkBackGroundColor(new java.awt.Color(255, 0, 51));
         btnLogin.setkEndColor(new java.awt.Color(255, 0, 0));
         btnLogin.setkHoverEndColor(new java.awt.Color(255, 0, 51));
-        btnLogin.setkHoverForeGround(new java.awt.Color(255, 0, 51));
+        btnLogin.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         btnLogin.setkHoverStartColor(new java.awt.Color(255, 0, 0));
         btnLogin.setkPressedColor(new java.awt.Color(255, 255, 255));
         btnLogin.setkStartColor(new java.awt.Color(255, 0, 51));
