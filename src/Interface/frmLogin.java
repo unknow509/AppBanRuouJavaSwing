@@ -7,6 +7,7 @@ package Interface;
 
 import Database.MyDatabase;
 import java.awt.Color;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,11 +19,12 @@ public class frmLogin extends javax.swing.JFrame {
     /**
      * Creates new form frmLogin
      */
+    MyDatabase db;
     public frmLogin() {
         initComponents();
         txtUsername.setBackground(new Color(0,0,0,0));
         txtPassword.setBackground(new Color(0,0,0,0));
-        MyDatabase db=new MyDatabase();
+         db=new MyDatabase();
 
     }
 
@@ -139,10 +141,25 @@ public class frmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username=txtUsername.getText().toLowerCase().trim();
         String password;
-        password = txtPassword.getText();
+        password = txtPassword.getText().trim();
         if(username.isEmpty())
             JOptionPane.showMessageDialog(this, "Mời nhập tên đăng nhập","Thông báo",1);
-        
+        else if(password.isEmpty())
+            JOptionPane.showMessageDialog(this, "Mời nhập mật khẩu","Thông báo",1);
+        else{
+            String sSelect = "SELECT * FROM ADMIN where UserAdmin='"+username+"' and PassAdmin='"+password+"'";
+            ResultSet rs = db.TruyVan(sSelect);
+            if(rs == null)
+            {
+                JOptionPane.showMessageDialog(this,"Loi truy van");
+                return;
+            }else
+            {
+                formTrangChu f=new formTrangChu();
+                f.setVisible(true);
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     /**
