@@ -5,7 +5,9 @@
  */
 package Interface;
 
+import Database.MyDatabase;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +22,7 @@ public class frmLogin extends javax.swing.JFrame {
         initComponents();
         txtUsername.setBackground(new Color(0,0,0,0));
         txtPassword.setBackground(new Color(0,0,0,0));
+        MyDatabase db=new MyDatabase();
 
     }
 
@@ -38,7 +41,7 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        kButton1 = new keeptoo.KButton();
+        btnLogin = new keeptoo.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,12 +70,17 @@ public class frmLogin extends javax.swing.JFrame {
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtPassword.setOpaque(false);
 
-        kButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        kButton1.setkHoverEndColor(new java.awt.Color(255, 51, 204));
-        kButton1.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        kButton1.setkHoverStartColor(new java.awt.Color(51, 51, 255));
-        kButton1.setkPressedColor(new java.awt.Color(255, 255, 255));
-        kButton1.setLabel("LOGIN");
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLogin.setkHoverEndColor(new java.awt.Color(255, 51, 204));
+        btnLogin.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        btnLogin.setkHoverStartColor(new java.awt.Color(51, 51, 255));
+        btnLogin.setkPressedColor(new java.awt.Color(255, 255, 255));
+        btnLogin.setLabel("LOGIN");
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLoginMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -92,7 +100,7 @@ public class frmLogin extends javax.swing.JFrame {
                             .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
@@ -109,7 +117,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -126,6 +134,16 @@ public class frmLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+        // TODO add your handling code here:
+        String username=txtUsername.getText().toLowerCase().trim();
+        String password;
+        password = txtPassword.getText();
+        if(username.isEmpty())
+            JOptionPane.showMessageDialog(this, "Mời nhập tên đăng nhập","Thông báo",1);
+        
+    }//GEN-LAST:event_btnLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,10 +181,10 @@ public class frmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private keeptoo.KButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private keeptoo.KButton kButton1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
