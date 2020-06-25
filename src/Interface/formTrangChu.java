@@ -5,6 +5,15 @@
  */
 package Interface;
 
+import Database.MyDatabase;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author admin
@@ -14,10 +23,40 @@ public class formTrangChu extends javax.swing.JFrame {
     /**
      * Creates new form formTrangChu
      */
-    public formTrangChu() {
+    MyDatabase db;
+    public formTrangChu() throws SQLException {
         initComponents();
+        db=new MyDatabase();
+        DoDuLieuVaoTable();
     }
-
+    public void DoDuLieuVaoTable() throws SQLException{
+          try {
+            DefaultTableModel modelTable = new DefaultTableModel();
+            String sSelect = "SELECT TenRuou,GiaBan,NgayCapNhat,SoLuongTon, Loairuou,TenXXu,TenNCC FROM RUOU as a, XUATXU as b, NHACUNGCAP as c, PHANLOAI as d where a.MaXXu = b.MaXXu and a.MaNCC = c.MaNCC and a.MaLoaiRuou = d.MaLoaiRuou";
+            ResultSet rs = db.TruyVan(sSelect);
+            if(rs == null)
+            {
+                JOptionPane.showMessageDialog(this,"loi");
+                return;
+            }
+            ResultSetMetaData md = rs.getMetaData();
+            int numCols = md.getColumnCount();
+            Object []arr = new Object[numCols];
+            for(int i=0;i<numCols;i++)
+                arr[i]=md.getColumnName(i+1);
+            modelTable.setColumnIdentifiers(arr);
+            while(rs.next())
+            {
+                for(int i=0;i<numCols;i++)
+                    arr[i]=rs.getObject(i+1);
+                modelTable.addRow(arr);
+            }
+            tableRuou.setModel(modelTable);
+        } catch (SQLException ex) {
+            //Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this,"loi");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +69,7 @@ public class formTrangChu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableRuou = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -47,7 +86,7 @@ public class formTrangChu extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("STUHRLING");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableRuou.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -66,7 +105,7 @@ public class formTrangChu extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableRuou);
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(478, 60));
 
@@ -170,7 +209,11 @@ public class formTrangChu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formTrangChu().setVisible(true);
+                try {
+                    new formTrangChu().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(formTrangChu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -186,6 +229,6 @@ public class formTrangChu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableRuou;
     // End of variables declaration//GEN-END:variables
 }

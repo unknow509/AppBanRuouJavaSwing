@@ -42,13 +42,20 @@ public class formGioHang extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
-        btnLogin1 = new keeptoo.KButton();
+        btnTinhTien = new keeptoo.KButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableGioHang = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        btnLogin = new keeptoo.KButton();
+        btnXoadonHang = new keeptoo.KButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -101,18 +108,18 @@ public class formGioHang extends javax.swing.JFrame {
         jLabel55.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel55.setText("1.210.000");
 
-        btnLogin1.setText("Tính tiền máy 15");
-        btnLogin1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLogin1.setkBackGroundColor(new java.awt.Color(0, 204, 0));
-        btnLogin1.setkEndColor(new java.awt.Color(0, 204, 0));
-        btnLogin1.setkHoverEndColor(new java.awt.Color(0, 204, 0));
-        btnLogin1.setkHoverForeGround(new java.awt.Color(255, 0, 51));
-        btnLogin1.setkHoverStartColor(new java.awt.Color(51, 204, 0));
-        btnLogin1.setkPressedColor(new java.awt.Color(255, 255, 255));
-        btnLogin1.setkStartColor(new java.awt.Color(0, 153, 0));
-        btnLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTinhTien.setText("Tính tiền máy 15");
+        btnTinhTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnTinhTien.setkBackGroundColor(new java.awt.Color(0, 204, 0));
+        btnTinhTien.setkEndColor(new java.awt.Color(0, 204, 0));
+        btnTinhTien.setkHoverEndColor(new java.awt.Color(0, 204, 0));
+        btnTinhTien.setkHoverForeGround(new java.awt.Color(255, 0, 51));
+        btnTinhTien.setkHoverStartColor(new java.awt.Color(51, 204, 0));
+        btnTinhTien.setkPressedColor(new java.awt.Color(255, 255, 255));
+        btnTinhTien.setkStartColor(new java.awt.Color(0, 153, 0));
+        btnTinhTien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLogin1MouseClicked(evt);
+                btnTinhTienMouseClicked(evt);
             }
         });
 
@@ -140,13 +147,11 @@ public class formGioHang extends javax.swing.JFrame {
                                 .addComponent(jLabel49)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel50))
-                            .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addComponent(jLabel48)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel48)
                             .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jRadioButton2)
                             .addComponent(jRadioButton1)
-                            .addComponent(btnLogin1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                            .addComponent(btnTinhTien, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
                         .addGap(22, 22, 22))))
         );
         jPanel13Layout.setVerticalGroup(
@@ -171,16 +176,16 @@ public class formGioHang extends javax.swing.JFrame {
                     .addComponent(jLabel51)
                     .addComponent(jLabel52))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel54)
-                    .addComponent(jLabel55))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel55)
+                    .addComponent(jLabel54))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTinhTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableGioHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTableGioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -199,7 +204,7 @@ public class formGioHang extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableGioHang);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton1.setText("Tăng số lượng");
@@ -211,20 +216,66 @@ public class formGioHang extends javax.swing.JFrame {
         jButton9.setForeground(new java.awt.Color(255, 0, 0));
         jButton9.setText("Xoá sản phẩm");
 
-        btnLogin.setText("Xoá đơn hàng");
-        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLogin.setkBackGroundColor(new java.awt.Color(255, 0, 51));
-        btnLogin.setkEndColor(new java.awt.Color(255, 0, 0));
-        btnLogin.setkHoverEndColor(new java.awt.Color(255, 0, 51));
-        btnLogin.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        btnLogin.setkHoverStartColor(new java.awt.Color(255, 0, 0));
-        btnLogin.setkPressedColor(new java.awt.Color(255, 255, 255));
-        btnLogin.setkStartColor(new java.awt.Color(255, 0, 51));
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnXoadonHang.setText("Xoá đơn hàng");
+        btnXoadonHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnXoadonHang.setkBackGroundColor(new java.awt.Color(255, 0, 51));
+        btnXoadonHang.setkEndColor(new java.awt.Color(255, 0, 0));
+        btnXoadonHang.setkHoverEndColor(new java.awt.Color(255, 0, 51));
+        btnXoadonHang.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        btnXoadonHang.setkHoverStartColor(new java.awt.Color(255, 0, 0));
+        btnXoadonHang.setkPressedColor(new java.awt.Color(255, 255, 255));
+        btnXoadonHang.setkStartColor(new java.awt.Color(255, 0, 51));
+        btnXoadonHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoginMouseClicked(evt);
+                btnXoadonHangMouseClicked(evt);
             }
         });
+
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(478, 60));
+
+        jMenu2.setText("Home");
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jMenu2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu2.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Sản phẩm");
+        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jMenu3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu3.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Loại sản phẩm");
+        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jMenu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu4.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Nhà cung cấp");
+        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu5.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Giỏi hàng");
+        jMenu6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu6.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Đăng xuất");
+        jMenu7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jMenu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu7.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenuBar1.add(jMenu7);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,7 +291,7 @@ public class formGioHang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnXoadonHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,11 +316,12 @@ public class formGioHang extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnXoadonHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,15 +337,15 @@ public class formGioHang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+    private void btnXoadonHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoadonHangMouseClicked
         // TODO add your handling code here:
         
 
-    }//GEN-LAST:event_btnLoginMouseClicked
+    }//GEN-LAST:event_btnXoadonHangMouseClicked
 
-    private void btnLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin1MouseClicked
+    private void btnTinhTienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTinhTienMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLogin1MouseClicked
+    }//GEN-LAST:event_btnTinhTienMouseClicked
 
     /**
      * @param args the command line arguments
@@ -331,28 +383,13 @@ public class formGioHang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private keeptoo.KButton btnLogin;
-    private keeptoo.KButton btnLogin1;
+    private keeptoo.KButton btnTinhTien;
+    private keeptoo.KButton btnXoadonHang;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
@@ -362,20 +399,18 @@ public class formGioHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableGioHang;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
