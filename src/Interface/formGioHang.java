@@ -261,7 +261,7 @@ public class formGioHang extends javax.swing.JFrame {
         jMenu5.setPreferredSize(new java.awt.Dimension(130, 40));
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Giỏi hàng");
+        jMenu6.setText("Giỏ hàng");
         jMenu6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

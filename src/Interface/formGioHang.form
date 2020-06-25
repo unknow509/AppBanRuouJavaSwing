@@ -65,7 +65,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gio&#x309;i ha&#x300;ng"/>
+            <Property name="text" type="java.lang.String" value="Gio&#x309; ha&#x300;ng"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="1"/>
             </Property>

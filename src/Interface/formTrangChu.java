@@ -32,7 +32,7 @@ public class formTrangChu extends javax.swing.JFrame {
     public void DoDuLieuVaoTable() throws SQLException{
           try {
             DefaultTableModel modelTable = new DefaultTableModel();
-            String sSelect = "SELECT TenRuou,GiaBan,NgayCapNhat,SoLuongTon, Loairuou,TenXXu,TenNCC FROM RUOU as a, XUATXU as b, NHACUNGCAP as c, PHANLOAI as d where a.MaXXu = b.MaXXu and a.MaNCC = c.MaNCC and a.MaLoaiRuou = d.MaLoaiRuou";
+            String sSelect = "SELECT MaRuou, TenRuou,GiaBan,NgayCapNhat,SoLuongTon, Loairuou,TenXXu,TenNCC FROM RUOU as a, XUATXU as b, NHACUNGCAP as c, PHANLOAI as d where a.MaXXu = b.MaXXu and a.MaNCC = c.MaNCC and a.MaLoaiRuou = d.MaLoaiRuou";
             ResultSet rs = db.TruyVan(sSelect);
             if(rs == null)
             {
@@ -67,9 +67,17 @@ public class formTrangChu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRuou = new javax.swing.JTable();
+        btnTinhTien = new keeptoo.KButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtTenRuou = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtGiaBan = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtSoLuongTon = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtXuatXu = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -82,30 +90,59 @@ public class formTrangChu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("STUHRLING");
-
         tableRuou.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên rượu", "Giá bán", "Ngày cập nhật", "Số lượng tồn", "Loại rượu", "Xuất xứ", "Nhà sản xuất"
+                "Mã Rượu", "Tên rượu", "Giá bán", "Ngày cập nhật", "Số lượng tồn", "Loại rượu", "Xuất xứ", "Nhà sản xuất"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
+        tableRuou.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableRuouMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableRuou);
+
+        btnTinhTien.setText("Thêm vào Giỏ hàng");
+        btnTinhTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnTinhTien.setkBackGroundColor(new java.awt.Color(0, 204, 0));
+        btnTinhTien.setkEndColor(new java.awt.Color(0, 204, 0));
+        btnTinhTien.setkHoverEndColor(new java.awt.Color(0, 204, 0));
+        btnTinhTien.setkHoverForeGround(new java.awt.Color(255, 0, 51));
+        btnTinhTien.setkHoverStartColor(new java.awt.Color(51, 204, 0));
+        btnTinhTien.setkPressedColor(new java.awt.Color(255, 255, 255));
+        btnTinhTien.setkStartColor(new java.awt.Color(0, 153, 0));
+
+        jLabel2.setText("Tên rượu :");
+
+        txtTenRuou.setEnabled(false);
+
+        jLabel3.setText("Giá bán :");
+        jLabel3.setPreferredSize(new java.awt.Dimension(62, 16));
+
+        txtGiaBan.setEnabled(false);
+
+        jLabel6.setText("Số lượng tồn :");
+
+        txtSoLuongTon.setEnabled(false);
+
+        jLabel7.setText("Xuất xứ :");
+        jLabel7.setPreferredSize(new java.awt.Dimension(62, 16));
+
+        txtXuatXu.setEnabled(false);
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(478, 60));
 
@@ -113,42 +150,42 @@ public class formTrangChu extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu2.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenu2.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Sản phẩm");
         jMenu3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu3.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenu3.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Loại sản phẩm");
         jMenu4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu4.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenu4.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Nhà cung cấp");
         jMenu5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu5.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenu5.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Giỏi hàng");
+        jMenu6.setText("Giỏ hàng");
         jMenu6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu6.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenu6.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Đăng xuất");
         jMenu7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu7.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenu7.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -158,10 +195,26 @@ public class formTrangChu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(321, 321, 321)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnTinhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTenRuou, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(235, 235, 235)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtXuatXu, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoLuongTon, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(291, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -169,15 +222,57 @@ public class formTrangChu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSoLuongTon, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTenRuou, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtXuatXu, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(btnTinhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tableRuouMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRuouMouseClicked
+        //Lay chi so dong dang chon
+        int row =tableRuou.getSelectedRow();
+        String ma=(tableRuou.getModel().getValueAt(row,0)).toString();
+        String getRuou = "SELECT MaRuou, TenRuou,GiaBan,SoLuongTon, TenXXu FROM RUOU as a, XUATXU as b where a.MaXXu = b.MaXXu and a.MaRuou = '"+ma+"' ";
+         ResultSet rs = db.TruyVan(getRuou);
+        try {
+            if(rs.next())//Neu co du lieu
+            {
+                txtTenRuou.setText(rs.getString("TenRuou"));
+                txtGiaBan.setText(rs.getString("GiaBan"));
+                txtSoLuongTon.setText(rs.getString("SoLuongTon"));
+                txtXuatXu.setText(rs.getString("TenXXu"));
+            }
+//            txtTenRuou.setText(ma.getString("MaSP"));
+//            txtTenSP.setText(ma.getString("TenSP"));
+//            txtGiaban.setText(ma.getString("Dongia"));
+//            cboLoaiSP.setSelectedItem(ma.getString("Maloai"));
+//            txtTenloai.setText(ma.getString("Tenloai"));
+        } catch (SQLException ex) {
+            Logger.getLogger(formTrangChu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tableRuouMouseClicked
 
     /**
      * @param args the command line arguments
@@ -219,7 +314,11 @@ public class formTrangChu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private keeptoo.KButton btnTinhTien;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -230,5 +329,9 @@ public class formTrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableRuou;
+    private javax.swing.JTextField txtGiaBan;
+    private javax.swing.JTextField txtSoLuongTon;
+    private javax.swing.JTextField txtTenRuou;
+    private javax.swing.JTextField txtXuatXu;
     // End of variables declaration//GEN-END:variables
 }
