@@ -7,7 +7,12 @@ package Interface;
 
 import Database.MyDatabase;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +25,26 @@ public class frmLogin extends javax.swing.JFrame {
      * Creates new form frmLogin
      */
     MyDatabase db;
+    class CustomKeyListener implements KeyListener{
+      
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                System.out.println("â");
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+   }
     public frmLogin() {
         initComponents();
         txtUsername.setBackground(new Color(0,0,0,0));
@@ -27,7 +52,29 @@ public class frmLogin extends javax.swing.JFrame {
          db=new MyDatabase();
 
     }
-
+    
+    public void login() throws SQLException{
+        String username=txtUsername.getText().toLowerCase().trim();
+        String password;
+        password = txtPassword.getText().trim();
+        if(username.isEmpty())
+            JOptionPane.showMessageDialog(this, "Mời nhập tên đăng nhập","Thông báo",1);
+        else if(password.isEmpty())
+            JOptionPane.showMessageDialog(this, "Mời nhập mật khẩu","Thông báo",1);
+        else{
+            String sSelect = "SELECT * FROM ADMIN where UserAdmin='"+username+"' and PassAdmin='"+password+"'";
+            ResultSet rs = db.TruyVan(sSelect);
+            if (!rs.isBeforeFirst() ) {    
+                JOptionPane.showMessageDialog(this,"Loi truy van");
+            } 
+            else
+            {
+                formTrangChu f=new formTrangChu();
+                f.setVisible(true);
+                this.dispose();
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,30 +185,14 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        // TODO add your handling code here:
-        String username=txtUsername.getText().toLowerCase().trim();
-        String password;
-        password = txtPassword.getText().trim();
-        if(username.isEmpty())
-            JOptionPane.showMessageDialog(this, "Mời nhập tên đăng nhập","Thông báo",1);
-        else if(password.isEmpty())
-            JOptionPane.showMessageDialog(this, "Mời nhập mật khẩu","Thông báo",1);
-        else{
-            String sSelect = "SELECT * FROM ADMIN where UserAdmin='"+username+"' and PassAdmin='"+password+"'";
-            ResultSet rs = db.TruyVan(sSelect);
-            if(rs == null)
-            {
-                JOptionPane.showMessageDialog(this,"Loi truy van");
-                return;
-            }else
-            {
-                formTrangChu f=new formTrangChu();
-                f.setVisible(true);
-                this.dispose();
-            }
+        try {
+            // TODO add your handling code here:
+            login();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLoginMouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
@@ -193,6 +224,7 @@ public class frmLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmLogin().setVisible(true);
+
             }
         });
     }
