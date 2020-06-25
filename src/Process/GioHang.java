@@ -24,7 +24,7 @@ public class GioHang {
         this.DonGia = DonGia;
         this.ThanhTien = ThanhTien;
     }
-    
-    
-    
 }
+
+
+
