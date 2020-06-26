@@ -6,6 +6,9 @@
 package Interface;
 
 import Process.GioHang;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -86,12 +89,11 @@ public class formGioHang extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnXoadonHang = new keeptoo.KButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        menuHome = new javax.swing.JMenu();
+        menuSanPham = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
+        menuGiohang = new javax.swing.JMenu();
+        menuDangXuat = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -276,47 +278,60 @@ public class formGioHang extends javax.swing.JFrame {
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(478, 60));
 
-        jMenu2.setText("Home");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jMenu2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu2.setPreferredSize(new java.awt.Dimension(130, 40));
-        jMenuBar1.add(jMenu2);
+        menuHome.setText("Home");
+        menuHome.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuHome.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuHomeMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuHome);
 
-        jMenu3.setText("Sản phẩm");
-        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jMenu3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu3.setPreferredSize(new java.awt.Dimension(130, 40));
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Loại sản phẩm");
-        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jMenu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu4.setPreferredSize(new java.awt.Dimension(130, 40));
-        jMenuBar1.add(jMenu4);
+        menuSanPham.setText("Sản phẩm");
+        menuSanPham.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuSanPham.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuSanPham.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuSanPham.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSanPhamMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuSanPham);
 
         jMenu5.setText("Nhà cung cấp");
         jMenu5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu5.setPreferredSize(new java.awt.Dimension(130, 40));
+        jMenu5.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Giỏ hàng");
-        jMenu6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu6.setPreferredSize(new java.awt.Dimension(130, 40));
-        jMenuBar1.add(jMenu6);
+        menuGiohang.setText("Giỏ hàng");
+        menuGiohang.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuGiohang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuGiohang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuGiohang.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuGiohang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuGiohangMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuGiohang);
 
-        jMenu7.setText("Đăng xuất");
-        jMenu7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jMenu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu7.setPreferredSize(new java.awt.Dimension(130, 40));
-        jMenuBar1.add(jMenu7);
+        menuDangXuat.setText("Đăng xuất");
+        menuDangXuat.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuDangXuat.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuDangXuatMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuDangXuat);
 
         setJMenuBar(jMenuBar1);
 
@@ -431,6 +446,41 @@ public class formGioHang extends javax.swing.JFrame {
         ChangeDataInRightTab();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
+    private void menuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSanPhamMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        QLSanPham qlsp = new QLSanPham();
+        qlsp.setVisible(true);
+    }//GEN-LAST:event_menuSanPhamMouseClicked
+
+    private void menuGiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGiohangMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        formGioHang gh = new formGioHang();
+        gh.setVisible(true);
+    }//GEN-LAST:event_menuGiohangMouseClicked
+
+    private void menuDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDangXuatMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        frmLogin login = new frmLogin();
+        login.setVisible(true);
+    }//GEN-LAST:event_menuDangXuatMouseClicked
+
+    private void menuHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuHomeMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        formTrangChu trangchu = null;
+
+        try {
+            trangchu = new formTrangChu();
+        } catch (SQLException ex) {
+            Logger.getLogger(formGioHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        trangchu.setVisible(true);
+    }//GEN-LAST:event_menuHomeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -481,12 +531,7 @@ public class formGioHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JRadioButton jRadioButton1;
@@ -497,5 +542,9 @@ public class formGioHang extends javax.swing.JFrame {
     private javax.swing.JLabel lblTien;
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JLabel lblVAT;
+    private javax.swing.JMenu menuDangXuat;
+    private javax.swing.JMenu menuGiohang;
+    private javax.swing.JMenu menuHome;
+    private javax.swing.JMenu menuSanPham;
     // End of variables declaration//GEN-END:variables
 }

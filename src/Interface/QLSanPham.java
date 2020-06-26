@@ -5,6 +5,10 @@
  */
 package Interface;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author hung
@@ -58,12 +62,11 @@ public class QLSanPham extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        menuHome = new javax.swing.JMenu();
+        menuSanPham = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        menuGiohang = new javax.swing.JMenu();
+        menuDangXuat = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,7 +255,7 @@ public class QLSanPham extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1282, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,33 +315,62 @@ public class QLSanPham extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Sản phẩm", jPanel2);
 
-        jMenu2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu2.setText("HOME");
-        jMenu2.setPreferredSize(new java.awt.Dimension(130, 40));
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(478, 60));
 
-        jMenu3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu3.setText("SAN PHẨM");
-        jMenuBar1.add(jMenu3);
+        menuHome.setText("Home");
+        menuHome.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuHome.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuHomeMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuHome);
 
-        jMenu4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu4.setText("LOẠI SẢN PHẨM");
-        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jMenu4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jMenuBar1.add(jMenu4);
+        menuSanPham.setText("Sản phẩm");
+        menuSanPham.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuSanPham.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuSanPham.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuSanPham.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSanPhamMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuSanPham);
 
-        jMenu1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu1.setText("NHÀ CUNG CẤP");
-        jMenuBar1.add(jMenu1);
-
-        jMenu5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu5.setText("GIỎ HÀNG");
+        jMenu5.setText("Nhà cung cấp");
+        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu5.setPreferredSize(new java.awt.Dimension(230, 40));
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu6.setText("ĐĂNG XUẤT");
-        jMenu6.setMaximumSize(new java.awt.Dimension(160, 32767));
-        jMenuBar1.add(jMenu6);
+        menuGiohang.setText("Giỏ hàng");
+        menuGiohang.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuGiohang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuGiohang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuGiohang.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuGiohang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuGiohangMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuGiohang);
+
+        menuDangXuat.setText("Đăng xuất");
+        menuDangXuat.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        menuDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuDangXuat.setPreferredSize(new java.awt.Dimension(230, 40));
+        menuDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuDangXuatMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuDangXuat);
 
         setJMenuBar(jMenuBar1);
 
@@ -364,6 +396,39 @@ public class QLSanPham extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSanPhamMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        QLSanPham qlsp = new QLSanPham();
+        qlsp.setVisible(true);
+    }//GEN-LAST:event_menuSanPhamMouseClicked
+
+    private void menuGiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGiohangMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        formGioHang gh = new formGioHang();
+        gh.setVisible(true);
+    }//GEN-LAST:event_menuGiohangMouseClicked
+
+    private void menuDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDangXuatMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        frmLogin login = new frmLogin();
+        login.setVisible(true);
+    }//GEN-LAST:event_menuDangXuatMouseClicked
+
+    private void menuHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuHomeMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        formTrangChu trangchu = null;
+        try {
+            trangchu = new formTrangChu();
+        } catch (SQLException ex) {
+            Logger.getLogger(QLSanPham.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        trangchu.setVisible(true);
+    }//GEN-LAST:event_menuHomeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -417,12 +482,7 @@ public class QLSanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -438,5 +498,9 @@ public class QLSanPham extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JMenu menuDangXuat;
+    private javax.swing.JMenu menuGiohang;
+    private javax.swing.JMenu menuHome;
+    private javax.swing.JMenu menuSanPham;
     // End of variables declaration//GEN-END:variables
 }
