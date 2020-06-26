@@ -126,7 +126,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="btnTinhTien" min="-2" pref="226" max="-2" attributes="0"/>
+                      <Component id="btnThemGioHang" min="-2" pref="226" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
@@ -178,12 +178,12 @@
                               <Component id="txtSoLuongTon" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                              <Component id="txtSearch" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                               <Component id="txtTenRuou" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel4" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                                  <Component id="txtSearch" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="50" max="32767" attributes="0"/>
@@ -196,7 +196,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnTinhTien" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="btnThemGioHang" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -280,7 +280,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="keeptoo.KButton" name="btnTinhTien">
+    <Component class="keeptoo.KButton" name="btnThemGioHang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Th&#xea;m va&#x300;o Gio&#x309; ha&#x300;ng"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -311,6 +311,9 @@
           <Color blue="0" green="99" red="0" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemGioHangActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
