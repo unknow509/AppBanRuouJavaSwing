@@ -22,24 +22,22 @@ public class formGioHang extends javax.swing.JFrame {
     public formGioHang() {
         initComponents();
          addData();   
-         
-         vAT = tongTien / 100 * 10;
-         tongCong = tongTien + vAT;
-         
-         String tongTienString =String.valueOf(tongTien);
-         lblTien.setText(tongTienString);
-         
-         String vATString =String.valueOf(vAT);
-         lblVAT.setText(vATString);
-         
-          String tongCongString =String.valueOf(tongCong);
-         lblTongTien.setText(tongCongString);
-
+        ChangeDataInRightTab();
 //
 //        DefaultTableModel model = (DefaultTableModel) jTableGioHang.getModel();
 //        model.addRow(items);
     }
-
+    public void ChangeDataInRightTab(){
+        int result=0;
+//        for(int i=0;i<items.length;i++){
+//            result+=items[i].DonGia*items[i].SoLuong;
+//        }
+        for(int i=0;i<jTableGioHang.getRowCount();i++)
+            result  +=Integer.valueOf(jTableGioHang.getValueAt(i, 1).toString())*Integer.valueOf(jTableGioHang.getValueAt(i, 2).toString()); 
+        lblTien.setText(String.valueOf(result));
+        lblVAT.setText(String.valueOf(result*10/100));
+        lblTongTien.setText(String.valueOf(result+result*10/100));
+    }
     public void addData() {
         items = new GioHang[5];
         
@@ -83,9 +81,9 @@ public class formGioHang extends javax.swing.JFrame {
         btnTinhTien = new keeptoo.KButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableGioHang = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnUpCount = new javax.swing.JButton();
+        btnDownCount = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnXoadonHang = new keeptoo.KButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -134,11 +132,6 @@ public class formGioHang extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(192, 192, 192));
         jTextField1.setText("   Nhập số điện thoại");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel54.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel54.setText("Tổng cộng");
@@ -146,7 +139,7 @@ public class formGioHang extends javax.swing.JFrame {
         lblTongTien.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblTongTien.setText("1.210.000");
 
-        btnTinhTien.setText("Tính tiền máy 15");
+        btnTinhTien.setText("Tính tiền");
         btnTinhTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnTinhTien.setkBackGroundColor(new java.awt.Color(0, 204, 0));
         btnTinhTien.setkEndColor(new java.awt.Color(0, 204, 0));
@@ -241,15 +234,30 @@ public class formGioHang extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableGioHang);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton1.setText("Tăng số lượng");
+        btnUpCount.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnUpCount.setText("Tăng số lượng");
+        btnUpCount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpCountMouseClicked(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton2.setText("Giảm số lượng");
+        btnDownCount.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnDownCount.setText("Giảm số lượng");
+        btnDownCount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDownCountMouseClicked(evt);
+            }
+        });
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 0, 0));
-        jButton9.setText("Xoá sản phẩm");
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 0, 0));
+        btnDelete.setText("Xoá sản phẩm");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
 
         btnXoadonHang.setText("Xoá đơn hàng");
         btnXoadonHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -263,11 +271,6 @@ public class formGioHang extends javax.swing.JFrame {
         btnXoadonHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnXoadonHangMouseClicked(evt);
-            }
-        });
-        btnXoadonHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoadonHangActionPerformed(evt);
             }
         });
 
@@ -325,11 +328,11 @@ public class formGioHang extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnUpCount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnDownCount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9)
+                        .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnXoadonHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12))
@@ -359,9 +362,9 @@ public class formGioHang extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnXoadonHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnUpCount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDownCount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,13 +376,15 @@ public class formGioHang extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void btnXoadonHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoadonHangMouseClicked
         // TODO add your handling code here:
-
+        DefaultTableModel dm = (DefaultTableModel) jTableGioHang.getModel();
+        int rowCount = dm.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dm.removeRow(i);
+        }
+        ChangeDataInRightTab();
 
     }//GEN-LAST:event_btnXoadonHangMouseClicked
 
@@ -387,9 +392,44 @@ public class formGioHang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTinhTienMouseClicked
 
-    private void btnXoadonHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoadonHangActionPerformed
-            // TODO add your handling code here:
-    }//GEN-LAST:event_btnXoadonHangActionPerformed
+    private void btnUpCountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpCountMouseClicked
+        // TODO add your handling code here:
+        try{
+        
+            int row=jTableGioHang.getSelectedRow();
+            int count= Integer.valueOf(jTableGioHang.getModel().getValueAt(row, 1).toString())+1 ;
+            int valDonGia=Integer.valueOf(jTableGioHang.getModel().getValueAt(row, 2).toString());
+            jTableGioHang.getModel().setValueAt(count, row,1);
+            jTableGioHang.setValueAt(valDonGia*count, row, 3);
+            ChangeDataInRightTab();
+        }catch(Exception e){}
+    }//GEN-LAST:event_btnUpCountMouseClicked
+
+    private void btnDownCountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDownCountMouseClicked
+        // TODO add your handling code here:
+        try{
+        
+            int row=jTableGioHang.getSelectedRow();
+            int count= Integer.valueOf(jTableGioHang.getModel().getValueAt(row, 1).toString())-1 ;
+            if(count!=0)
+            {
+                int valDonGia=Integer.valueOf(jTableGioHang.getModel().getValueAt(row, 2).toString());
+                jTableGioHang.getModel().setValueAt(count, row,1);
+                jTableGioHang.setValueAt(valDonGia*count, row, 3);
+                ChangeDataInRightTab();
+            }
+                
+            
+        }catch(Exception e){}
+    }//GEN-LAST:event_btnDownCountMouseClicked
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        // TODO add your handling code here:
+        int row=jTableGioHang.getSelectedRow();
+        DefaultTableModel dm = (DefaultTableModel) jTableGioHang.getModel();
+        dm.removeRow(row);
+        ChangeDataInRightTab();
+    }//GEN-LAST:event_btnDeleteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -428,12 +468,12 @@ public class formGioHang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDownCount;
     private keeptoo.KButton btnTinhTien;
+    private javax.swing.JButton btnUpCount;
     private keeptoo.KButton btnXoadonHang;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
