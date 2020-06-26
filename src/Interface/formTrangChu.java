@@ -67,7 +67,7 @@ public class formTrangChu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRuou = new javax.swing.JTable();
-        btnTinhTien = new keeptoo.KButton();
+        btnThemGioHang = new keeptoo.KButton();
         jLabel2 = new javax.swing.JLabel();
         txtTenRuou = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -116,16 +116,21 @@ public class formTrangChu extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableRuou);
 
-        btnTinhTien.setText("Thêm vào Giỏ hàng");
-        btnTinhTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnTinhTien.setkBackGroundColor(new java.awt.Color(0, 204, 0));
-        btnTinhTien.setkEndColor(new java.awt.Color(0, 204, 0));
-        btnTinhTien.setkHoverEndColor(new java.awt.Color(0, 204, 0));
-        btnTinhTien.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        btnTinhTien.setkHoverStartColor(new java.awt.Color(51, 204, 0));
-        btnTinhTien.setkIndicatorColor(new java.awt.Color(51, 51, 51));
-        btnTinhTien.setkPressedColor(new java.awt.Color(255, 255, 255));
-        btnTinhTien.setkStartColor(new java.awt.Color(0, 153, 0));
+        btnThemGioHang.setText("Thêm vào Giỏ hàng");
+        btnThemGioHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThemGioHang.setkBackGroundColor(new java.awt.Color(0, 204, 0));
+        btnThemGioHang.setkEndColor(new java.awt.Color(0, 204, 0));
+        btnThemGioHang.setkHoverEndColor(new java.awt.Color(0, 204, 0));
+        btnThemGioHang.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        btnThemGioHang.setkHoverStartColor(new java.awt.Color(51, 204, 0));
+        btnThemGioHang.setkIndicatorColor(new java.awt.Color(51, 51, 51));
+        btnThemGioHang.setkPressedColor(new java.awt.Color(255, 255, 255));
+        btnThemGioHang.setkStartColor(new java.awt.Color(0, 153, 0));
+        btnThemGioHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemGioHangActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setText("Tên rượu :");
@@ -222,7 +227,7 @@ public class formTrangChu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(btnTinhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnThemGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,11 +268,11 @@ public class formTrangChu extends javax.swing.JFrame {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtSoLuongTon, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTenRuou, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtTenRuou, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,7 +281,7 @@ public class formTrangChu extends javax.swing.JFrame {
                             .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTinhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnThemGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
         );
 
@@ -310,6 +315,13 @@ public class formTrangChu extends javax.swing.JFrame {
         tableRuou.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void btnThemGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGioHangActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        formGioHang gh = new formGioHang();
+        gh.setVisible(true);
+    }//GEN-LAST:event_btnThemGioHangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,7 +363,7 @@ public class formTrangChu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private keeptoo.KButton btnTinhTien;
+    private keeptoo.KButton btnThemGioHang;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
