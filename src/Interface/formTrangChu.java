@@ -6,11 +6,15 @@
 package Interface;
 
 import Database.MyDatabase;
+import Process.GioHang;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -20,12 +24,12 @@ import javax.swing.table.TableRowSorter;
  *
  * @author admin
  */
-public class formTrangChu extends javax.swing.JFrame {
+public class formTrangChu extends JFrame {
 
-    /**
-     * Creates new form formTrangChu
-     */
+    
     MyDatabase db;
+   //  formGioHang gh = new formGioHang();
+     private GioHang giohang[];
     public formTrangChu() throws SQLException {
         initComponents();
         db=new MyDatabase();
@@ -60,6 +64,10 @@ public class formTrangChu extends javax.swing.JFrame {
         }
     }
 
+//    public static void AddVaoGioHang(Object[] dataRow){
+//        DefaultTableModel model = (DefaultTableModel) jTableGioHang.get;
+//    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -125,11 +133,6 @@ public class formTrangChu extends javax.swing.JFrame {
         btnThemGioHang.setkIndicatorColor(new java.awt.Color(51, 51, 51));
         btnThemGioHang.setkPressedColor(new java.awt.Color(255, 255, 255));
         btnThemGioHang.setkStartColor(new java.awt.Color(0, 153, 0));
-        btnThemGioHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemGioHangActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setText("Tên rượu :");
@@ -323,11 +326,6 @@ public class formTrangChu extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void btnThemGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGioHangActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnThemGioHangActionPerformed
-
     private void menuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSanPhamMouseClicked
         // TODO add your handling code here:
         this.dispose();
@@ -345,10 +343,14 @@ public class formTrangChu extends javax.swing.JFrame {
     private void menuGiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGiohangMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        formGioHang gh = new formGioHang();
-        gh.setVisible(true);
+        formGioHang giohang = new formGioHang();
+        giohang.setVisible(true);
+        
     }//GEN-LAST:event_menuGiohangMouseClicked
 
+    
+   
+    
     /**
      * @param args the command line arguments
      */
