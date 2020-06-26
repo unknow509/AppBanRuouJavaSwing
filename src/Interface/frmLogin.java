@@ -45,11 +45,12 @@ public class frmLogin extends javax.swing.JFrame {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
    }
-    public frmLogin() throws SQLException {
+    public frmLogin() {
         initComponents();
         txtUsername.setBackground(new Color(0,0,0,0));
         txtPassword.setBackground(new Color(0,0,0,0));
-        db = new MyDatabase();
+         db=new MyDatabase();
+
     }
     
     public void login() throws SQLException{
@@ -222,11 +223,7 @@ public class frmLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new frmLogin().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new frmLogin().setVisible(true);
 
             }
         });

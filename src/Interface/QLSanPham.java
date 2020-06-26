@@ -5,16 +5,6 @@
  */
 package Interface;
 
-import Database.MyDatabase;
-import Process.Ruou;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author hung
@@ -24,27 +14,10 @@ public class QLSanPham extends javax.swing.JFrame {
     /**
      * Creates new form QLSanPham
      */
-    private final Ruou r = new Ruou();
-    private boolean isAdd = true;
-    private final DefaultTableModel tableModel = new DefaultTableModel();
-    MyDatabase db;
-    public QLSanPham()throws SQLException{
+    public QLSanPham() {
         initComponents();
-        String[] colsName = {"STT", "Tên Sản Phẩm" , "Mã Loại"};
-        // Set column title
-        tableModel.setColumnIdentifiers(colsName);
-        // Connect jTable to tableModel
-        tblLruou.setModel(tableModel);
-        // Show data
-        showData();
-        // Delete text field
-        setNull();
-        // Set enable text field
-        setEnable(true);
-        // Set enable button
-        setEnableButton(true);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,19 +31,17 @@ public class QLSanPham extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblLruou = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        txtMa_Lruou = new javax.swing.JTextField();
-        txtTen_Lruou = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtLoai_Lruou = new javax.swing.JTextField();
-        btnThem_Lruou = new javax.swing.JButton();
-        btnTim_Lruou = new javax.swing.JButton();
-        btnSua_Lruou = new javax.swing.JButton();
-        btnXoa_Lruou = new javax.swing.JButton();
-        btnLuu_Lruou = new javax.swing.JButton();
-        btnThoat_Lruou = new javax.swing.JButton();
+        jTextField6 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -100,7 +71,7 @@ public class QLSanPham extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Tìm Kiếm");
 
-        tblLruou.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -126,7 +97,7 @@ public class QLSanPham extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblLruou);
+        jScrollPane2.setViewportView(jTable2);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Mã Sản Phẩm");
@@ -137,35 +108,21 @@ public class QLSanPham extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Loại Sản Phẩm");
 
-        btnThem_Lruou.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnThem_Lruou.setText("Thêm");
-        btnThem_Lruou.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnThem_Lruou.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThem_LruouActionPerformed(evt);
-            }
-        });
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton5.setText("Thêm");
+        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnTim_Lruou.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnTim_Lruou.setText("Tìm");
-        btnTim_Lruou.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton6.setText("Tìm");
+        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnSua_Lruou.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSua_Lruou.setText("Sửa");
-        btnSua_Lruou.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton7.setText("Sửa");
+        jButton7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnXoa_Lruou.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnXoa_Lruou.setText("Xóa");
-        btnXoa_Lruou.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnLuu_Lruou.setText("Lưu");
-        btnLuu_Lruou.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuu_LruouActionPerformed(evt);
-            }
-        });
-
-        btnThoat_Lruou.setText("Thoát");
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton8.setText("Xóa");
+        jButton8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,26 +141,19 @@ public class QLSanPham extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTen_Lruou, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtMa_Lruou)
-                                .addComponent(txtLoai_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextField4)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnTim_Lruou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSua_Lruou, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnLuu_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnThoat_Lruou, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                    .addComponent(btnThem_Lruou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoa_Lruou, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(120, 120, 120))
         );
         jPanel1Layout.setVerticalGroup(
@@ -218,23 +168,24 @@ public class QLSanPham extends javax.swing.JFrame {
                                 .addGap(33, 33, 33))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
-                                .addComponent(txtMa_Lruou)
+                                .addComponent(jTextField4)
                                 .addGap(27, 27, 27)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTen_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSua_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnXoa_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnTim_Lruou, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                        .addComponent(btnThem_Lruou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(35, 35, 35)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLoai_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLuu_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThoat_Lruou, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -301,7 +252,7 @@ public class QLSanPham extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,63 +365,6 @@ public class QLSanPham extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnThem_LruouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_LruouActionPerformed
-            // TODO add your handling code here:
-        setNull();
-        setEnable(false);
-        setEnableButton(false);
-        isAdd = true;
-    }//GEN-LAST:event_btnThem_LruouActionPerformed
-
-    private void btnLuu_LruouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu_LruouActionPerformed
-        // TODO add your handling code here:
-        String MaRuou = txtMa_Lruou.getText();
-        String TenRuou = txtTen_Lruou.getText();
-        String MaLoaiRuou = txtLoai_Lruou.getText();
-        if (MaLoaiRuou.length() == 0 || TenRuou.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập Mã Loại và Tên Rượu");
-        } else {
-            if (MaLoaiRuou.length() > 2 || TenRuou.length() > 30) {
-                JOptionPane.showMessageDialog(null, "Mã loại chỉ có 2 ký tự và tên Rượu không quá 30 ký tự");
-            } else {
-                try {
-                    if (isAdd = true) {
-                        r.insertLoaiRuou(MaRuou,TenRuou,MaLoaiRuou);
-                        JOptionPane.showMessageDialog(null, "Thêm thành công");
-                    } else {
-                        r.updateLoaiRuou(MaRuou, TenRuou , MaLoaiRuou);
-                        JOptionPane.showMessageDialog(null, "Sửa thành công");
-                    }
-
-                    // Clear data from table
-                    clearData();
-                    // Show data from datable to table again
-                    showData();
-                
-                } catch (SQLException ex) {
-                    Logger.getLogger(QLSanPham.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            // Enable text field
-            setEnable(false);
-            // Enable button
-            setEnableButton(true);
-        }
-    }//GEN-LAST:event_btnLuu_LruouActionPerformed
-        public void showData() throws SQLException {
-        ResultSet result = r.ShowLoaiRuou();
-        try {
-            while (result.next()) {
-                String rows[] = new String[3];
-                rows[0] = result.getString(1);
-                rows[1] = result.getString(2);
-                rows[2] = result.getString(3);
-                tableModel.addRow(rows);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     /**
      * @param args the command line arguments
      */
@@ -501,32 +395,20 @@ public class QLSanPham extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new QLSanPham().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(QLSanPham.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new QLSanPham().setVisible(true);
             }
         });
     }
- public void clearData() {
-        int n = tableModel.getRowCount() - 1;
-        for (int i = n; i >= 0; i--) {
-            tableModel.removeRow(i);
-        }
-    }
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLuu_Lruou;
-    private javax.swing.JButton btnSua_Lruou;
-    private javax.swing.JButton btnThem_Lruou;
-    private javax.swing.JButton btnThoat_Lruou;
-    private javax.swing.JButton btnTim_Lruou;
-    private javax.swing.JButton btnXoa_Lruou;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -548,35 +430,13 @@ public class QLSanPham extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTable tblLruou;
-    private javax.swing.JTextField txtLoai_Lruou;
-    private javax.swing.JTextField txtMa_Lruou;
-    private javax.swing.JTextField txtTen_Lruou;
     // End of variables declaration//GEN-END:variables
-public void setNull() {
-        this.txtMa_Lruou.setText(null);
-        this.txtTen_Lruou.setText(null);
-        this.txtLoai_Lruou.requestFocus();
-    }
-
-    // Set enable textField
-    public void setEnable(boolean a) {
-        this.txtMa_Lruou.setEnabled(!a);
-        this.txtTen_Lruou.setEnabled(!a);
-        this.txtTen_Lruou.setEnabled(!a);
-    }
-
-    // Set enable Button
-    public void setEnableButton(boolean a) {
-        this.btnThem_Lruou.setEnabled(a);
-        this.btnXoa_Lruou.setEnabled(a);
-        this.btnSua_Lruou.setEnabled(a);
-        this.btnLuu_Lruou.setEnabled(!a);
-        this.btnThoat_Lruou.setEnabled(a);
-       
-    }
 }
