@@ -28,7 +28,7 @@ public class MyDatabase {
         try {
             Class.forName(s_ClassName);
             con = DriverManager.getConnection(s_URL,username,password);           
-            JOptionPane.showMessageDialog(null,"Ket noi thanh cong");
+          
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ket noi khong thanh cong!");
         }  
