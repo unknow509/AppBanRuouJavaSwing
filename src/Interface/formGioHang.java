@@ -6,11 +6,25 @@
 package Interface;
 
 import Process.GioHang;
+import com.itextpdf.text.BaseColor;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+ 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.CMYKColor;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.io.File;
 /**
  *
  * @author nhobao
@@ -21,7 +35,7 @@ public class formGioHang extends javax.swing.JFrame {
     int tongTien = 0;
     int vAT = 0;
     int tongCong = 0;
-
+    
     public formGioHang() {
         initComponents();
          addData();
@@ -403,6 +417,40 @@ public class formGioHang extends javax.swing.JFrame {
 
     private void btnTinhTienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTinhTienMouseClicked
         // TODO add your handling code here:
+        com.itextpdf.text.Font redFont = FontFactory.getFont(FontFactory.COURIER, 16, Font.BOLD, new CMYKColor(0, 255, 0, 0));
+        com.itextpdf.text.Font MainFont = FontFactory.getFont(FontFactory.TIMES,"utf-8", 12, Font.BOLD, BaseColor.BLACK);
+        Document document = new Document();
+        try
+        {
+            File file=new File("SetAttributeExample.pdf");
+            FileOutputStream fileOut = new FileOutputStream(file);
+
+            PdfWriter writer = PdfWriter.getInstance(document,fileOut);
+            document.open();
+            document.add(new Paragraph("STUHRLING",redFont));
+            document.add(new Paragraph("......................................."));
+            for(int i=0;i<jTableGioHang.getRowCount();i++)
+                document.add(new Paragraph((jTableGioHang.getValueAt(i, 0).toString()+"         "+jTableGioHang.getValueAt(i, 1).toString()+"    "+jTableGioHang.getValueAt(i, 2).toString())));
+            document.add(new Paragraph("......................................."));
+            document.add(new Paragraph("Thanh Tien                  "+lblTien.getText()));
+            document.add(new Paragraph("Vat(10%)                    "+lblVAT.getText()));
+            document.add(new Paragraph("Tông                        "+lblTongTien.getText(),MainFont));
+
+            //Set attributes here
+            document.addAuthor("Lokesh Gupta");
+            document.addCreationDate();
+            document.addCreator("HowToDoInJava.com");
+            document.addTitle("Set Attribute Example");
+            document.addSubject("An example to show how attributes can be added to pdf files.");
+
+            document.close();
+            writer.close();
+            
+            Desktop.getDesktop().open(new File(file.getAbsolutePath()));
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnTinhTienMouseClicked
 
     private void btnUpCountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpCountMouseClicked
