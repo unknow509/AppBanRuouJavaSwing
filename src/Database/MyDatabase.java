@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class MyDatabase {
-    private final String s_ClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; 
-    private final String s_URL = "jdbc:sqlserver://localhost:1433;databaseName=QLBANRUOU";   
-    private String username = "sa";
-    private String password = "123456";
-    private Connection con;
+    public Connection con = null;
     //jdbc:sqlserver://localhost;databaseName=QLTHUVIEN;integratedSecurity=true;
-    public MyDatabase()
+    public void MyDatabase() throws SQLException 
     {
+             String s_ClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; 
+             String s_URL = "jdbc:sqlserver://localhost:1433;databaseName=QLBANRUOU";   
+             String username = "sa";
+             String password = "123456";
         try {
             Class.forName(s_ClassName);
             con = DriverManager.getConnection(s_URL,username,password);           
@@ -33,20 +33,6 @@ public class MyDatabase {
             JOptionPane.showMessageDialog(null,"Ket noi khong thanh cong!");
         }  
     }
-    
-    public boolean KetNoi()
-    {   
-        try {
-            Class.forName(s_ClassName);
-            con = DriverManager.getConnection(s_URL,username,password);           
-            JOptionPane.showMessageDialog(null,"Ket noi thanh cong");
-            return true;
-        } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Ket noi khong thanh cong");
-            return false;
-        }  
-    }
-    
     public ResultSet TruyVan(String sqlCommand)
     {
         Statement st = null;
@@ -58,6 +44,16 @@ public class MyDatabase {
             JOptionPane.showMessageDialog(null,"Thuc thi truy van khong thanh cong:\n" + sqlCommand);
         } 
         return rs;
+    }
+      public ResultSet loadData(String sql){
+        ResultSet result = null;
+        try {
+            Statement statement = con.createStatement();
+            return statement.executeQuery(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     public int ThemXoaSua(String sqlCommand)
@@ -85,5 +81,13 @@ public class MyDatabase {
             Logger.getLogger(MyDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return isSuccessed;
+    }
+    public void updateData(String sql){
+        try {
+            Statement statement = con.createStatement();
+            statement.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
