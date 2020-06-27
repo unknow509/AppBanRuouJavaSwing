@@ -38,12 +38,9 @@ public class formGioHang extends javax.swing.JFrame {
     
     public formGioHang() {
         initComponents();
-         addData();   
+         addData();
         ChangeDataInRightTab();
-        
-//
-//        DefaultTableModel model = (DefaultTableModel) jTableGioHang.getModel();
-//        model.addRow(items);
+
     }
     public void ChangeDataInRightTab(){
         int result=0;
@@ -56,7 +53,7 @@ public class formGioHang extends javax.swing.JFrame {
         lblVAT.setText(String.valueOf(result*10/100));
         lblTongTien.setText(String.valueOf(result+result*10/100));
     }
-    public void addData() {
+    public  void addData() {
         items = new GioHang[5];
         
         for (int i = 0; i < 5; i++) {
