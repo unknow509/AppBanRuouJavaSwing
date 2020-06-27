@@ -435,9 +435,9 @@ public class formGioHang extends javax.swing.JFrame {
             for(int i=0;i<jTableGioHang.getRowCount();i++)
                 document.add(new Paragraph((jTableGioHang.getValueAt(i, 0).toString()+"         "+jTableGioHang.getValueAt(i, 1).toString()+"    "+jTableGioHang.getValueAt(i, 2).toString())));
             document.add(new Paragraph("......................................."));
-            document.add(new Paragraph("Thanh Tien                  "+lblTien.getText()));
-            document.add(new Paragraph("Vat(10%)                    "+lblVAT.getText()));
-            document.add(new Paragraph("Tông                        "+lblTongTien.getText(),MainFont));
+            document.add(new Paragraph("Thanh Tien               "+lblTien.getText()));
+            document.add(new Paragraph("Vat (10%)                   "+lblVAT.getText()));
+            document.add(new Paragraph("Tong                               "+lblTongTien.getText(),MainFont));
 
             //Set attributes here
             document.addAuthor("Lokesh Gupta");
