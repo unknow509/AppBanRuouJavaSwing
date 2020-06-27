@@ -25,13 +25,14 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author nhobao
  */
 public class formGioHang extends javax.swing.JFrame {
-
-    GioHang[] items;
+    List<GioHang> items =new ArrayList<GioHang>();
     int tongTien = 0;
     int vAT = 0;
     int tongCong = 0;
@@ -42,6 +43,13 @@ public class formGioHang extends javax.swing.JFrame {
         ChangeDataInRightTab();
 
     }
+    public formGioHang(List<GioHang> g)  {
+        initComponents();
+        items=g;
+        addData();
+        ChangeDataInRightTab();
+    }
+   
     public void ChangeDataInRightTab(){
         int result=0;
 //        for(int i=0;i<items.length;i++){
@@ -54,19 +62,13 @@ public class formGioHang extends javax.swing.JFrame {
         lblTongTien.setText(String.valueOf(result+result*10/100));
     }
     public  void addData() {
-        items = new GioHang[5];
-        
-        for (int i = 0; i < 5; i++) {
-            GioHang g;
-            g = new GioHang("San pham " + (i + 1), (i + 1), (i + 1) * 1000, (i + 1)*1000*(i + 1));
-            items[i] = g;
-        }
         DefaultTableModel model = (DefaultTableModel) jTableGioHang.getModel();
-        for (int i = 0; i < 5; i++) {
-            model.addRow(new Object[]{items[i].TenSP, items[i].SoLuong, items[i].DonGia, items[i].ThanhTien});
-            tongTien += items[i].ThanhTien;
-
-        }
+        for(GioHang obj : items){
+            model.addRow(new Object[]{obj.TenSP,obj.SoLuong,obj.DonGia,obj.ThanhTien});
+        }       
+    }
+    public void ganDataItems(List<GioHang> g ){
+        items=g;
     }
 
     /**
@@ -424,7 +426,6 @@ public class formGioHang extends javax.swing.JFrame {
         {
             File file=new File("SetAttributeExample.pdf");
             FileOutputStream fileOut = new FileOutputStream(file);
-
             PdfWriter writer = PdfWriter.getInstance(document,fileOut);
             document.open();
             document.add(new Paragraph("STUHRLING",redFont));
@@ -519,7 +520,8 @@ public class formGioHang extends javax.swing.JFrame {
         formTrangChu trangchu = null;
 
         try {
-            trangchu = new formTrangChu();
+            trangchu = new formTrangChu(items);
+            
         } catch (SQLException ex) {
             Logger.getLogger(formGioHang.class.getName()).log(Level.SEVERE, null, ex);
         }
