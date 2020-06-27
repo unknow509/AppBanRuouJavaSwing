@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -26,10 +28,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class formTrangChu extends JFrame {
 
-    
+   
     MyDatabase db;
-   //  formGioHang gh = new formGioHang();
-     private GioHang giohang[];
+    List<GioHang> giohang =new ArrayList<GioHang>();
+    
     public formTrangChu() throws SQLException {
         initComponents();
         db=new MyDatabase();
@@ -67,7 +69,15 @@ public class formTrangChu extends JFrame {
 //    public static void AddVaoGioHang(Object[] dataRow){
 //        DefaultTableModel model = (DefaultTableModel) jTableGioHang.get;
 //    }
-    
+    public GioHang addGioHang(){
+       GioHang g = new GioHang();
+       g.TenSP = txtTenRuou.getText(); 
+       g.DonGia = Integer.parseInt(txtGiaBan.getText());  
+       g.SoLuong = 1;
+       g.ThanhTien = g.DonGia;
+       return g;
+        
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -133,6 +143,11 @@ public class formTrangChu extends JFrame {
         btnThemGioHang.setkIndicatorColor(new java.awt.Color(51, 51, 51));
         btnThemGioHang.setkPressedColor(new java.awt.Color(255, 255, 255));
         btnThemGioHang.setkStartColor(new java.awt.Color(0, 153, 0));
+        btnThemGioHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemGioHangActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setText("Tên rượu :");
@@ -347,6 +362,25 @@ public class formTrangChu extends JFrame {
         giohang.setVisible(true);
         
     }//GEN-LAST:event_menuGiohangMouseClicked
+
+    private void btnThemGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGioHangActionPerformed
+        // TODO add your handling code here:
+        GioHang a = addGioHang();
+        int check=0;
+        for (GioHang obj : giohang) {
+            if(a.TenSP.equalsIgnoreCase(obj.TenSP) ){
+             obj.SoLuong+=1;
+             check=1;
+            } 
+        }
+        if(check==0){
+         giohang.add(a);
+        }
+        System.out.println("---");
+        for (GioHang obj : giohang) {
+            System.out.println(obj.TenSP+" "+obj.SoLuong);
+        }
+    }//GEN-LAST:event_btnThemGioHangActionPerformed
 
     
    
