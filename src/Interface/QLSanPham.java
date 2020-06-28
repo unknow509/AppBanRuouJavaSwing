@@ -120,7 +120,7 @@ public class QLSanPham extends javax.swing.JFrame {
                     arr[i]=rs.getObject(i+1);
                 modelTable.addRow(arr);
             }
-            JtableMainSP.setModel(modelTable);
+            tableSanPham.setModel(modelTable);
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(this,"loi");
@@ -144,6 +144,9 @@ public class QLSanPham extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"error xuat xu");
         }
     }
+//     public int LayMaXuatXu(String tenxx){
+//        String sql = "select MaXXu from XUATXU where TenXXu =" + "'"+tenxx+"'";
+//    }
     public void NapComboNhaCungCap(){
     try {
             String sSQL = "SELECT TenNCC FROM NHACUNGCAP";
@@ -174,18 +177,19 @@ public class QLSanPham extends javax.swing.JFrame {
             while(rs.next())
             {
                 comboLoaiRuou.addItem(rs.getString(1));
+           
             }
         } catch (SQLException ex) {
             //Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this,"error loại");
         }
     }
+   
     public void NutThemDo() throws ParseException{  
         String tensp = txtTenSanPham.getText();
         String gia = txtGiaBan.getText();
         String mota = txtMoTa.getText();
-        String anh = "1.jpg";
-        
+        String anh = "1.jpg";     
        LocalDateTime ngaycap = LocalDateTime.now();  
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");  
         String formatDateTime = ngaycap.format(format);
@@ -242,7 +246,7 @@ public class QLSanPham extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtMoTa = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        JtableMainSP = new javax.swing.JTable();
+        tableSanPham = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JTextField();
@@ -470,7 +474,7 @@ public class QLSanPham extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Mô tả");
 
-        JtableMainSP.setModel(new javax.swing.table.DefaultTableModel(
+        tableSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -496,15 +500,20 @@ public class QLSanPham extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(JtableMainSP);
-        if (JtableMainSP.getColumnModel().getColumnCount() > 0) {
-            JtableMainSP.getColumnModel().getColumn(2).setHeaderValue("Giá");
-            JtableMainSP.getColumnModel().getColumn(3).setHeaderValue("Mô tả");
-            JtableMainSP.getColumnModel().getColumn(4).setHeaderValue("Ngày cấp");
-            JtableMainSP.getColumnModel().getColumn(5).setHeaderValue("Số lượng");
-            JtableMainSP.getColumnModel().getColumn(6).setHeaderValue("Xuất xứ");
-            JtableMainSP.getColumnModel().getColumn(7).setHeaderValue("Nhà Cung cấp");
-            JtableMainSP.getColumnModel().getColumn(8).setHeaderValue("Loại rượu");
+        tableSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableSanPhamMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tableSanPham);
+        if (tableSanPham.getColumnModel().getColumnCount() > 0) {
+            tableSanPham.getColumnModel().getColumn(2).setHeaderValue("Giá");
+            tableSanPham.getColumnModel().getColumn(3).setHeaderValue("Mô tả");
+            tableSanPham.getColumnModel().getColumn(4).setHeaderValue("Ngày cấp");
+            tableSanPham.getColumnModel().getColumn(5).setHeaderValue("Số lượng");
+            tableSanPham.getColumnModel().getColumn(6).setHeaderValue("Xuất xứ");
+            tableSanPham.getColumnModel().getColumn(7).setHeaderValue("Nhà Cung cấp");
+            tableSanPham.getColumnModel().getColumn(8).setHeaderValue("Loại rượu");
         }
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -773,6 +782,29 @@ public class QLSanPham extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
+    private void tableSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableSanPhamMouseClicked
+        // TODO add your handling code here:
+       int row =tableSanPham.getSelectedRow();
+        String ma=(tableSanPham.getModel().getValueAt(row,0)).toString();
+        String getRuou = "SELECT MaRuou, TenRuou,GiaBan,Mota,SoLuongTon, TenXXu FROM RUOU as a, XUATXU as b where a.MaXXu = b.MaXXu and a.MaRuou = '"+ma+"' ";
+         ResultSet rs = db.TruyVan(getRuou);
+        try {
+            if(rs.next())//Neu co du lieu
+            {
+                txtTenSanPham.setText(rs.getString("TenRuou"));
+                txtGiaBan.setText(rs.getString("GiaBan"));
+                txtSoLuong.setText(rs.getString("SoLuongTon"));
+               // txtNgayCap.setText(rs.getString("NgayCapNhat"));
+                txtMoTa.setText(rs.getString("Mota"));
+                comboXuatXu.setEditable(true);
+                comboXuatXu.setSelectedItem("TenXXu");
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(formTrangChu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tableSanPhamMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -810,7 +842,6 @@ public class QLSanPham extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JtableMainLSP;
-    private javax.swing.JTable JtableMainSP;
     private javax.swing.JTable JtableMainXX;
     private keeptoo.KButton btnLogin;
     private keeptoo.KButton btnLogin1;
@@ -852,6 +883,7 @@ public class QLSanPham extends javax.swing.JFrame {
     private javax.swing.JMenu menuGiohang;
     private javax.swing.JMenu menuHome;
     private javax.swing.JMenu menuSanPham;
+    private javax.swing.JTable tableSanPham;
     private javax.swing.JTextField txtGiaBan;
     private javax.swing.JTextField txtMoTa;
     private javax.swing.JTextField txtNgayCap;
