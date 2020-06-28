@@ -27,15 +27,18 @@ import javax.swing.table.TableRowSorter;
  * @author admin
  */
 public class formTrangChu extends JFrame {
-
-   
     MyDatabase db;
     List<GioHang> giohang =new ArrayList<GioHang>();
-    
     public formTrangChu() throws SQLException {
         initComponents();
         db=new MyDatabase();
         DoDuLieuVaoTable();
+    }
+     public formTrangChu(List<GioHang> giohangtrangchu) throws SQLException{
+         initComponents();
+        db=new MyDatabase();
+        DoDuLieuVaoTable();
+        giohang = giohangtrangchu;
     }
     public void DoDuLieuVaoTable() throws SQLException{
           try {
@@ -66,18 +69,15 @@ public class formTrangChu extends JFrame {
         }
     }
 
-//    public static void AddVaoGioHang(Object[] dataRow){
-//        DefaultTableModel model = (DefaultTableModel) jTableGioHang.get;
-//    }
     public GioHang addGioHang(){
        GioHang g = new GioHang();
        g.TenSP = txtTenRuou.getText(); 
        g.DonGia = Integer.parseInt(txtGiaBan.getText());  
        g.SoLuong = 1;
        g.ThanhTien = g.DonGia;
-       return g;
-        
+       return g; 
     }
+      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -358,8 +358,9 @@ public class formTrangChu extends JFrame {
     private void menuGiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGiohangMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        formGioHang giohang = new formGioHang();
-        giohang.setVisible(true);
+        formGioHang formgiohang = new formGioHang(giohang);
+    
+        formgiohang.setVisible(true);
         
     }//GEN-LAST:event_menuGiohangMouseClicked
 
@@ -380,6 +381,7 @@ public class formTrangChu extends JFrame {
         for (GioHang obj : giohang) {
             System.out.println(obj.TenSP+" "+obj.SoLuong);
         }
+        
     }//GEN-LAST:event_btnThemGioHangActionPerformed
 
     
