@@ -575,11 +575,9 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-<<<<<<< HEAD
                           <Component id="jScrollPane2" pref="398" max="32767" attributes="0"/>
-=======
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
->>>>>>> parent of 33403f1... Done frmLSP
+                          <Component id="jScrollPane2" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -733,10 +731,8 @@
                               <Component id="jLabel6" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="jTextField5" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="jScrollPane4" pref="398" max="32767" attributes="0"/>
-=======
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
@@ -744,7 +740,6 @@
                           </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="jScrollPane4" pref="466" max="32767" attributes="0"/>
->>>>>>> parent of 33403f1... Done frmLSP
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -807,7 +802,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-<<<<<<< HEAD
 
               </SubComponents>
             </Container>
@@ -1068,8 +1062,6 @@
 
                   </Events>
                 </Component>
-=======
->>>>>>> parent of 33403f1... Done frmLSP
               </SubComponents>
             </Container>
           </SubComponents>
