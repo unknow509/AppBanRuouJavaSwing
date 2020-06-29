@@ -27,15 +27,18 @@ import javax.swing.table.TableRowSorter;
  * @author admin
  */
 public class formTrangChu extends JFrame {
-
-   
     MyDatabase db;
     List<GioHang> giohang =new ArrayList<GioHang>();
-    
     public formTrangChu() throws SQLException {
         initComponents();
         db=new MyDatabase();
         DoDuLieuVaoTable();
+    }
+     public formTrangChu(List<GioHang> giohangtrangchu) throws SQLException{
+         initComponents();
+        db=new MyDatabase();
+        DoDuLieuVaoTable();
+        giohang = giohangtrangchu;
     }
     public void DoDuLieuVaoTable() throws SQLException{
           try {
@@ -357,9 +360,10 @@ public class formTrangChu extends JFrame {
 
     private void menuGiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGiohangMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        formGioHang giohang = new formGioHang();
-        giohang.setVisible(true);
+       this.dispose();
+        formGioHang formgiohang = new formGioHang(giohang);
+    
+        formgiohang.setVisible(true);
         
     }//GEN-LAST:event_menuGiohangMouseClicked
 
