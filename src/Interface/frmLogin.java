@@ -93,11 +93,6 @@ public class frmLogin extends javax.swing.JFrame {
         btnLogin = new keeptoo.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
 
         kGradientPanel1.setkEndColor(new java.awt.Color(51, 51, 255));
         kGradientPanel1.setkGradientFocus(100);
@@ -123,11 +118,6 @@ public class frmLogin extends javax.swing.JFrame {
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtPassword.setOpaque(false);
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyPressed(evt);
-            }
-        });
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLogin.setkHoverEndColor(new java.awt.Color(255, 51, 204));
@@ -138,6 +128,11 @@ public class frmLogin extends javax.swing.JFrame {
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLoginMouseClicked(evt);
+            }
+        });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLoginKeyPressed(evt);
             }
         });
 
@@ -203,7 +198,7 @@ public class frmLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
-    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+    private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
         formTrangChu f = null;
@@ -215,11 +210,7 @@ public class frmLogin extends javax.swing.JFrame {
                 f.setVisible(true);
                 this.dispose();
         }
-    }//GEN-LAST:event_txtPasswordKeyPressed
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formKeyPressed
+    }//GEN-LAST:event_btnLoginKeyPressed
     
     /**
      * @param args the command line arguments
